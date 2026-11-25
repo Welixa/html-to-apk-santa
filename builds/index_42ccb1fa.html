@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Web Sitesi Şablonu</title>
+    <style>
+        /* Genel Ayarlar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Menü (Navbar) */
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #1abc9c;
+        }
+
+        /* Karşılama Alanı (Hero) */
+        .hero {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1a252f;
+        }
+
+        /* Kartlar Bölümü (Hizmetler) */
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #1abc9c;
+            margin-bottom: 15px;
+        }
+
+        /* İletişim Formu */
+        .contact-section {
+            background-color: #fff;
+            padding: 50px 20px;
+            margin-top: 50px;
+        }
+
+        .form-group {
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group button {
+            width: 100%;
+        }
+
+        /* Alt Bilgi (Footer) */
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        /* Mobil Uyum */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Üst Menü -->
+    <header>
+        <div class="logo">MarkaAdı</div>
+        <nav>
+            <ul>
+                <li><a href="#anasayfa">Ana Sayfa</a></li>
+                <li><a href="#hizmetler">Hizmetler</a></li>
+                <li><a href="#hakkimizda">Hakkımızda</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Karşılama Alanı -->
+    <section id="anasayfa" class="hero">
+        <h1>Geleceğin Web Çözümleri</h1>
+        <p>Modern, hızlı ve kullanıcı dostu tasarımlarla dijital dünyadaki yerinizi sağlamlaştırın.</p>
+        <button class="btn" onclick="mesajGoster()">Hemen Başla</button>
+    </section>
+
+    <!-- Hizmetler Bölümü -->
+    <section id="hizmetler" class="container">
+        <h2 class="section-title">Hizmetlerimiz</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Web Tasarım</h3>
+                <p>Tüm cihazlarla tam uyumlu (responsive), estetik ve modern arayüz tasarımları oluşturuyoruz.</p>
+            </div>
+            <div class="card">
+                <h3>Yazılım Geliştirme</h3>
+                <p>İhtiyaçlarınıza özel, yüksek performanslı ve güvenli web uygulamaları geliştiriyoruz.</p>
+            </div>
+            <div class="card">
+                <h3>SEO Optimizasyonu</h3>
+                <p>Arama motorlarında üst sıralarda yer almanız için teknik ve içerik odaklı iyileştirmeler yapıyoruz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hakkımızda Bölümü -->
+    <section id="hakkimizda" class="container">
+        <h2 class="section-title">Hakkımızda</h2>
+        <div class="card">
+            <p>Deneyimli ekibimizle birlikte işletmelerin dijital dönüşüm süreçlerine rehberlik ediyoruz. Müşteri memnuniyetini ve kaliteyi her zaman ön planda tutarak yenilikçi projelere imza atıyoruz.</p>
+        </div>
+    </section>
+
+    <!-- İletişim Bölümü -->
+    <section id="iletisim" class="contact-section">
+        <h2 class="section-title">Bize Ulaşın</h2>
+        <form onsubmit="formGonder(event)">
+            <div class="form-group">
+                <label for="ad">Adınız Soyadınız</label>
+                <input type="text" id="ad" required placeholder="Örn: Ahmet Yılmaz">
+            </div>
+            <div class="form-group">
+                <label for="email">E-posta Adresiniz</label>
+                <input type="email" id="email" required placeholder="ornek@mail.com">
+            </div>
+            <div class="form-group">
+                <label for="mesaj">Mesajınız</label>
+                <textarea id="mesaj" rows="4" required placeholder="Mesajınızı buraya yazın..."></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn">Mesajı Gönder</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Alt Bilgi -->
+    <footer>
+        <p>&copy; 2026 MarkaAdı. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <!-- Basit Etkileşim Kodları -->
+    <script>
+        function mesajGoster() {
+            alert("Hoş geldiniz! Hizmetlerimizi incelemek için sayfayı aşağı kaydırabilirsiniz.");
+        }
+
+        function formGonder(event) {
+            event.preventDefault();
+            const ad = document.getElementById("ad").value;
+            alert("Teşekkürler " + ad + "! Mesajınız başarıyla alındı.");
+            event.target.reset();
+        }
+    </script>
+
+</body>
+</html>
