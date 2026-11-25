@@ -11,8 +11,8 @@ on:
         description: "Android Package Name"
         required: true
         default: "com.santa.webapp"
-      html_b64:
-        description: "Base64 encoded HTML content"
+      html_repo_path:
+        description: "HTML file path inside repository"
         required: true
       job_id:
         description: "Unique Job ID"
@@ -33,6 +33,9 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          api-level: 34
+          build-tools: "34.0.0"
 
       - name: Create Android WebView project
         run: |
@@ -41,7 +44,7 @@ jobs:
           mkdir -p android_app/app/src/main/res/values
           mkdir -p android_app/app/src/main/assets
 
-          echo "${{ inputs.html_b64 }}" | base64 -d > android_app/app/src/main/assets/index.html
+          cp "${{ inputs.html_repo_path }}" android_app/app/src/main/assets/index.html
 
           cat << 'EOF' > android_app/settings.gradle
           rootProject.name = "SantaWebViewApp"
@@ -177,7 +180,7 @@ jobs:
       - name: Build Debug APK
         run: |
           cd android_app
-          gradle assembleDebug --no-daemon
+          gradle assembleDebug --stacktrace --no-daemon
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
