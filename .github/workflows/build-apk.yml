@@ -33,18 +33,25 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
-        with:
-          api-level: 34
-          build-tools: "34.0.0"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
 
       - name: Create Android WebView project
         run: |
-          mkdir -p android_app/app/src/main/java/com/santa/webapp
+          PKG_DIR=$(echo "${{ inputs.package_name }}" | tr '.' '/')
+          mkdir -p "android_app/app/src/main/java/$PKG_DIR"
           mkdir -p android_app/app/src/main/res/layout
           mkdir -p android_app/app/src/main/res/values
           mkdir -p android_app/app/src/main/assets
 
           cp "${{ inputs.html_repo_path }}" android_app/app/src/main/assets/index.html
+
+          cat << 'EOF' > android_app/gradle.properties
+          org.gradle.jvmargs=-Xmx2048m
+          android.useAndroidX=true
+          android.nonTransitiveRClass=false
+          EOF
 
           cat << 'EOF' > android_app/settings.gradle
           rootProject.name = "SantaWebViewApp"
@@ -133,8 +140,8 @@ jobs:
               android:layout_height="match_parent" />
           EOF
 
-          cat << 'EOF' > android_app/app/src/main/java/com/santa/webapp/MainActivity.java
-          package com.santa.webapp;
+          cat << EOF > "android_app/app/src/main/java/$PKG_DIR/MainActivity.java"
+          package ${{ inputs.package_name }};
 
           import android.annotation.SuppressLint;
           import android.os.Bundle;
